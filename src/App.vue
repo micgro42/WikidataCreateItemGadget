@@ -1,0 +1,30 @@
+<script setup lang="ts">
+import { CdxButton } from '@wikimedia/codex/packages/vue-components/src/lib';
+import CreateItemForm from './components/CreateItemForm.vue';
+import CreateItemModal from './components/CreateItemModal.vue';
+</script>
+
+<template>
+  <CdxButton action="progressive" type="quiet">Create Item</CdxButton>
+  <CreateItemModal>
+    <template #header><h3>Create new Item</h3></template>
+    <template #body>
+      <CreateItemForm />
+    </template>
+    <template #footer>
+      <CdxButton action="default" type="quiet">Cancel</CdxButton>
+      <CdxButton action="progressive" type="primary">Create</CdxButton>
+    </template>
+  </CreateItemModal>
+</template>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
