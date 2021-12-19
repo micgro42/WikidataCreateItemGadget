@@ -13,6 +13,7 @@
     "@vitejs/plugin-vue": "^2.0.0",
     "@wikimedia/codex": "github:wikimedia/design-codex#main",
     "less": "^4.1.2",
+    "pinia": "^2.0.6",
     "sass": "^1.45.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
