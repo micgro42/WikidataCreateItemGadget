@@ -5,17 +5,15 @@ import CreateItemModal from './components/CreateItemModal.vue';
 </script>
 
 <template>
-  <CdxButton action="progressive" type="quiet">Create Item</CdxButton>
-  <CreateItemModal>
-    <template #header><h3>Create new Item</h3></template>
-    <template #body>
-      <CreateItemForm />
-    </template>
-    <template #footer>
-      <CdxButton action="default" type="quiet">Cancel</CdxButton>
-      <CdxButton action="progressive" type="primary">Create</CdxButton>
-    </template>
-  </CreateItemModal>
+  <div>
+    <CreateItemModal>
+      <template #header><h3>Create new Item</h3></template>
+      <template #body>
+        <CreateItemForm />
+      </template>
+      <template #footer><span /> </template>
+    </CreateItemModal>
+  </div>
 </template>
 
 <style>

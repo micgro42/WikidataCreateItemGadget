@@ -1,64 +1,46 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { CdxTextInput, CdxLookup } from 'vue-components';
 import { useCreateItemStore } from '../store/createItemStore';
-
-// Set up a reactive reference to track the input value.
-const labelValue = ref<string | number>( '' );
-const descriptionValue = ref<string | number>( '' );
-const aliasesValue = ref<string | number>( '' );
-const instanceOfInputValue = ref<string | number>( '' );
+import PropertySwitch from './PropertySwitch.vue';
+import LabelInput from './LabelInput.vue';
+import DescriptionInput from './DescriptionInput.vue';
+import AliasesInput from './AliasesInput.vue';
+import ItemLookup from './ItemLookup.vue';
+import { CdxButton } from 'vue-components';
 
 const store = useCreateItemStore();
 
-const selectInstanceOfOption = ( option: unknown ) => {
-    console.log( 'option selected', option );
-}
-const instanceOfInput = ( input: string ) => {
-    console.log( 'instanceOf input', input );
-    store.searchInstanceOfOptions( input );
-}
+const instanceOfInput = (input: string) => {
+  console.log('instanceOf input', input);
+  store.searchInstanceOfOptions(input);
+};
+const propertyOptions = [
+  {
+    label: 'instance of',
+    value: 'P31', // TODO: inject this!
+  },
+  {
+    label: 'subclass of',
+    value: 'P276',
+  },
+];
+// ontology options, ontology value, onOntologyInput
 </script>
 <template>
-    <form>
-        <label>Label:<CdxTextInput v-model="labelValue" placeholder="Alan Turing" required="true" /></label>
-        <label>Description:<CdxTextInput v-model="descriptionValue" placeholder="British computer scientist" required="true" /></label>
-        <label>Aliases, pipe-separated:<CdxTextInput v-model="aliasesValue" placeholder="Alan M. Turing | Turing"/></label>
-        <label>Instance of:<CdxLookup 
-            v-model:inputValue="instanceOfInputValue"
-            @update:modelValue="selectInstanceOfOption"
-            @update:inputValue="instanceOfInput"
-            :options="store.instanceOfMenuOptions"
-            class="lookup-custom-option"
-        >
-            <template #menuOption="{ option }">
-                <p class="option__label">
-					{{ option.label || option.value }}
-				</p>
-				<p v-if="option.description" class="option__description">
-					{{ option.description }}
-				</p>
-            </template>
-        </CdxLookup>
-        </label>
-    </form>
+  <form @submit.prevent="store.submitForm">
+    <LabelInput v-model="store.labelValue" />
+    <DescriptionInput v-model="store.descriptionValue" />
+    <AliasesInput v-model="store.aliases" />
+    <PropertySwitch
+      v-model="store.ontologyPropertyId"
+      :property-options="propertyOptions"
+    /><br />
+    <ItemLookup
+      v-model="store.ontologyItemId"
+      @new-input="instanceOfInput"
+      :options="store.instanceOfMenuOptions"
+    />
+    <CdxButton action="progressive" type="primary">Create</CdxButton>
+    <CdxButton action="default" type="quiet">Cancel</CdxButton>
+  </form>
 </template>
-<style lang="scss" scoped>
-.lookup-custom-option {
-    p {
-        margin: 0;
-    }
-
-    .option {
-
-    &__label {
-		font-weight: bold;
-	}
-
-	&__description {
-		font-size: 0.875em;
-		line-height: 1.25;
-	}
-    }
-}
-</style>
