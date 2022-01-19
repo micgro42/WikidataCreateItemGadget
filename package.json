@@ -5,6 +5,7 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "buildOnly": "vite build",
+    "format": "prettier . --write",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -15,6 +16,7 @@
     "@wikimedia/codex": "github:wikimedia/design-codex#main",
     "less": "^4.1.2",
     "pinia": "^2.0.6",
+    "prettier": "^2.5.1",
     "sass": "^1.45.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
