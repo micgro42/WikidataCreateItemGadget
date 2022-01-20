@@ -1,6 +1,6 @@
 export default interface SearchResult {
-	id: string;
-	label: string;
-	description: string;
-	datatype: string;
+  id: string;
+  label: string;
+  description: string;
+  datatype: string;
 }

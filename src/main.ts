@@ -1,13 +1,20 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import { createPinia } from 'pinia'
+import { createApp } from 'vue';
+import App from './App.vue';
+import { createPinia } from 'pinia';
+import createServices from './createServices';
+import MwWindow from './@types/MwWindow';
 
 // @ts-ignore
-window.zvpunryCreateItemApp = ( mountSelector ) => {
+window.zvpunryCreateItemApp = (mountSelector = '#app') => {
+  /**
+   * config: indexOfPid subclassOfPid
+   */
 
-    const app = createApp(App);
-    app.use(createPinia());
+  const services = createServices( window as unknown as MwWindow ); // TODO: type this better
+  const app = createApp(App);
+  app.use(createPinia());
 
-    app.mount(mountSelector);
-
-}
+  console.log('before mount');
+  app.mount(mountSelector);
+  console.log('after mount');
+};
