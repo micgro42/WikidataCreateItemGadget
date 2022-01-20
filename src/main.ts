@@ -19,6 +19,7 @@ window.zvpunryCreateItemApp = (mountSelector = '#app') => {
   function storeServices() {
     return {
       writingEntityRepo: services.get('writingEntityRepository'),
+      searchEntitiesRepo: services.get('searchEntitiesRepository'),
     };
   }
 

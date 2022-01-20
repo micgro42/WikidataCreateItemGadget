@@ -1,9 +1,9 @@
-import SearchEntityRepository from './SearchEntityRepository';
+import SearchEntitiesRepository from './SearchEntityRepository';
 import SearchResult from './SearchResult';
 import TechnicalProblem from './errors/TechnicalProblem';
 
 export default class FetchSearchEntityRepository
-  implements SearchEntityRepository
+  implements SearchEntitiesRepository
 {
   private readonly forLanguageCode: string;
   private readonly endpoint: string;
@@ -68,7 +68,7 @@ export default class FetchSearchEntityRepository
     return this.searchEntities(searchString, 'property', limit, offset);
   }
 
-  public searchItemValues(
+  public searchItems(
     searchString: string,
     limit?: number,
     offset?: number,

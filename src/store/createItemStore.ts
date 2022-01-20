@@ -32,7 +32,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
         'en',
         'https://www.wikidata.org/w/api.php',
       );
-      this.instanceOfOptions = await repo.searchItemValues(searchText);
+      this.instanceOfOptions = await repo.searchItems(searchText);
       console.log(this.instanceOfOptions[0]);
     },
     submitForm() {

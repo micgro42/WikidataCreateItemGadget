@@ -1,7 +1,9 @@
+import SearchEntitiesRepository from './data-access/SearchEntityRepository';
 import WritingEntityRepository from './data-access/WritingEntityRepository';
 
 export interface Services {
   writingEntityRepository: WritingEntityRepository;
+  searchEntitiesRepository: SearchEntitiesRepository;
 }
 
 export default class ServiceContainer {
