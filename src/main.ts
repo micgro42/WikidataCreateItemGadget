@@ -10,9 +10,17 @@ window.zvpunryCreateItemApp = (mountSelector = '#app') => {
    * config: indexOfPid subclassOfPid
    */
 
-  const services = createServices( window as unknown as MwWindow ); // TODO: type this better
+  const services = createServices(window as unknown as MwWindow); // TODO: type this better
   const app = createApp(App);
-  app.use(createPinia());
+  const pinia = createPinia();
+  pinia.use(storeServices);
+  app.use(pinia);
+
+  function storeServices() {
+    return {
+      writingEntityRepo: services.get('writingEntityRepository'),
+    };
+  }
 
   console.log('before mount');
   app.mount(mountSelector);
