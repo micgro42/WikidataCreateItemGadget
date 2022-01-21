@@ -1,6 +1,4 @@
-import MwWindow from './@types/MwWindow';
-import ApiCore from './data-access/ApiCore';
-import ApiWritingRepository from './data-access/ApiWritingRepository';
+import FetchSearchEntityRepository from './data-access/FetchSearchEntitiesRepository';
 import WritingEntityRepository from './data-access/WritingEntityRepository';
 import Entity from './datamodel/Entity';
 import EntityRevision from './datamodel/EntityRevision';
@@ -21,6 +19,11 @@ export default function createServices(): ServiceContainer {
   const services = new ServiceContainer();
 
   services.set('writingEntityRepository', new MockWritingRepository());
+
+  services.set(
+    'searchEntitiesRepository',
+    new FetchSearchEntityRepository('en', 'https://www.wikidata.org/w/api.php'),
+  );
 
   return services;
 }

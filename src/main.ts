@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, markRaw } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import createServices from './createServices';
@@ -18,8 +18,8 @@ window.zvpunryCreateItemApp = (mountSelector = '#app') => {
 
   function storeServices() {
     return {
-      writingEntityRepo: services.get('writingEntityRepository'),
-      searchEntitiesRepo: services.get('searchEntitiesRepository'),
+      writingEntityRepo: markRaw(services.get('writingEntityRepository')),
+      searchEntitiesRepo: markRaw(services.get('searchEntitiesRepository')),
     };
   }
 

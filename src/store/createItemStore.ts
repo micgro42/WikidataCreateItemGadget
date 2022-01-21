@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import FetchSearchEntityRepository from '../data-access/FetchSearchEntitiesRepository';
 import SearchResult from '../data-access/SearchResult';
 import { MenuOption } from 'vue-components/src/types';
+import Entity from '../datamodel/Entity';
 
 export const useCreateItemStore = defineStore('createItemStore', {
   state: () => ({
@@ -32,7 +33,10 @@ export const useCreateItemStore = defineStore('createItemStore', {
         'en',
         'https://www.wikidata.org/w/api.php',
       );
-      this.instanceOfOptions = await repo.searchItems(searchText);
+      // this.instanceOfOptions = await repo.searchItems(searchText);
+      this.instanceOfOptions = await this.searchEntitiesRepo.searchItems(
+        searchText,
+      );
       console.log(this.instanceOfOptions[0]);
     },
     submitForm() {
@@ -43,6 +47,9 @@ export const useCreateItemStore = defineStore('createItemStore', {
         this.aliases,
         this.ontologyPropertyId,
         this.ontologyItemId,
+      );
+      this.writingEntityRepo.saveEntity(
+        new Entity('Q1', {}), // fixme change!
       );
     },
   },

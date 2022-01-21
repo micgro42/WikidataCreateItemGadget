@@ -1,11 +1,20 @@
-import { createApp } from 'vue';
+import { createApp, markRaw } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import createMockServices from './createMockServices';
 
 const services = createMockServices();
 const app = createApp(App);
-app.use(createPinia());
+const pinia = createPinia();
+pinia.use(storeServices);
+app.use(pinia);
+
+function storeServices() {
+  return {
+    writingEntityRepo: markRaw(services.get('writingEntityRepository')),
+    searchEntitiesRepo: markRaw(services.get('searchEntitiesRepository')),
+  };
+}
 
 console.log('before mount');
 app.mount('#app');

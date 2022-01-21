@@ -40,7 +40,7 @@ export default class ApiSearchEntitiesRepository
     }
     const response = await this.api.get(params); // TODO: try/catch
     // FIXME
-    // @ts-ignore 
+    // @ts-ignore
     return response.search;
   }
 }
