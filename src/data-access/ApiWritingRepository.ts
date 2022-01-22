@@ -4,8 +4,7 @@ import EntityRevision from '../datamodel/EntityRevision';
 import Entity from '../datamodel/Entity';
 import { WritingApi } from './Api';
 import ApiErrors from './errors/ApiErrors';
-import ApplicationError, { ErrorTypes } from '@/definitions/ApplicationError';
-import SavingError from '@/data-access/error/SavingError';
+import SavingError from './errors/SavingError';
 
 interface ApiResponseEntity {
   id: string;
@@ -64,25 +63,12 @@ export default class ApiWritingRepository implements WritingEntityRepository {
         }
 
         throw new SavingError(
-          error.errors.map((apiError): ApplicationError => {
+          error.errors.map((apiError): { type: string; info: unknown } => {
             switch (apiError.code) {
-              case 'assertanonfailed':
-                return { type: ErrorTypes.ASSERT_ANON_FAILED, info: apiError };
               case 'assertuserfailed':
-                return { type: ErrorTypes.ASSERT_USER_FAILED, info: apiError };
-              case 'assertnameduserfailed':
-                return {
-                  type: ErrorTypes.ASSERT_NAMED_USER_FAILED,
-                  info: apiError,
-                };
-              case 'editconflict':
-                return { type: ErrorTypes.EDIT_CONFLICT, info: apiError };
-              case 'nosuchrevid':
-                return { type: ErrorTypes.NO_SUCH_REVID, info: apiError };
-              case 'badtags':
-                return { type: ErrorTypes.BAD_TAGS, info: apiError };
+                return { type: 'assert_user_failed', info: apiError };
               default:
-                return { type: ErrorTypes.SAVING_FAILED, info: apiError };
+                return { type: 'saving_failed', info: apiError };
             }
           }),
         );
