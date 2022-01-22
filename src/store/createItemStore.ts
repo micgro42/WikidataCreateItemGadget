@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import FetchSearchEntityRepository from '../data-access/FetchSearchEntitiesRepository';
 import SearchResult from '../data-access/SearchResult';
-import { MenuOption } from 'vue-components/src/types';
+import { MenuOption } from '@wikimedia/codex/packages/vue-components';
 import Entity from '../datamodel/Entity';
 
 export const useCreateItemStore = defineStore('createItemStore', {

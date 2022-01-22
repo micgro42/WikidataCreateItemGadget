@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import CdxRadio from 'vue-components/src/components/radio/Radio.vue';
+import { CdxRadio } from '@wikimedia/codex/packages/vue-components';
 
 const onUpdate = (value: string): void => {
   // eslint-disable-next-line no-console

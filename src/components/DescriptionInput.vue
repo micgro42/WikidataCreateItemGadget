@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { CdxTextInput } from 'vue-components';
+import { CdxTextInput } from '@wikimedia/codex/packages/vue-components';
 
 export default defineComponent({
   components: { CdxTextInput },

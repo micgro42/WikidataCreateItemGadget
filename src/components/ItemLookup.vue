@@ -23,7 +23,7 @@
 </template>
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { CdxLookup } from 'vue-components';
+import { CdxLookup } from '@wikimedia/codex/packages/vue-components';
 
 export default defineComponent({
   components: { CdxLookup },

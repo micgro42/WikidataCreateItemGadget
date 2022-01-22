@@ -8,7 +8,7 @@
   /></label>
 </template>
 <script setup lang="ts">
-import { CdxTextInput } from 'vue-components';
+import { CdxTextInput } from '@wikimedia/codex/packages/vue-components';
 const props = defineProps<{
   modelValue: string[];
 }>();
