@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { useCreateItemStore } from '../store/createItemStore';
 import PropertySwitch from './PropertySwitch.vue';
 import LabelInput from './LabelInput.vue';
