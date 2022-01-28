@@ -40,6 +40,8 @@ const propertyOptions = [
       :options="store.instanceOfMenuOptions"
     />
     <CdxButton action="progressive" type="primary">Create</CdxButton>
-    <CdxButton action="default" type="quiet">Cancel</CdxButton>
+    <CdxButton action="default" type="quiet" @click.prevent="store.cancel"
+      >Cancel</CdxButton
+    >
   </form>
 </template>
