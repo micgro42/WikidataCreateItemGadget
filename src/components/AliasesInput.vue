@@ -4,7 +4,6 @@
       :modelValue="aliasString"
       @update:model-value="onInput"
       placeholder="Alan M. Turing | Turing"
-      required="true"
   /></label>
 </template>
 <script setup lang="ts">
