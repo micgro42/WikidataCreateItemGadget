@@ -1,3 +1,4 @@
+// @ts-ignore configureCompat is only available in the vue on-wiki
 import { createApp, markRaw, configureCompat } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';

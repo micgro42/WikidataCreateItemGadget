@@ -43,11 +43,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
       if (!searchText) {
         return [];
       }
-      const repo = new FetchSearchEntityRepository(
-        'en',
-        'https://www.wikidata.org/w/api.php',
-      );
-      // this.instanceOfOptions = await repo.searchItems(searchText);
+
       this.instanceOfOptions = await this.searchEntitiesRepo.searchItems(
         searchText,
       );
