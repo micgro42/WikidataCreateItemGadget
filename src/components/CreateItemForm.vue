@@ -16,11 +16,11 @@ const instanceOfInput = (input: string) => {
 const propertyOptions = [
   {
     label: 'instance of',
-    value: 'P31', // TODO: inject this!
+    value: store.wikiConfig.instanceOfProperty,
   },
   {
     label: 'subclass of',
-    value: 'P276',
+    value: store.wikiConfig.subclassOfProperty,
   },
 ];
 // ontology options, ontology value, onOntologyInput

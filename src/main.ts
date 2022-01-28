@@ -3,6 +3,12 @@ import App from './App.vue';
 import { createPinia } from 'pinia';
 import createServices from './createServices';
 import MwWindow from './@types/MwWindow';
+import { useCreateItemStore } from './store/createItemStore';
+
+type wikiConfig = {
+  instanceOfProperty: string;
+  subclassOfProperty: string;
+};
 
 configureCompat({
   MODE: 3,
@@ -12,16 +18,23 @@ window.zvpunryCreateItemApp = (
   mountSelector = '#app',
   closeWithNewItem: (itemId: string) => void,
   cancelAndClose: () => void,
+  config: wikiConfig,
+  initialInput: string,
 ) => {
-  /**
-   * config: indexOfPid subclassOfPid
-   */
-
   const services = createServices(window as unknown as MwWindow); // TODO: type this better
   const app = createApp(App);
   const pinia = createPinia();
   pinia.use(storeServices);
   app.use(pinia);
+
+  const store = useCreateItemStore(pinia);
+  store.labelValue = initialInput;
+  if (config) {
+    store.wikiConfig = {
+      ...store.wikiConfig,
+      ...config,
+    };
+  }
 
   function storeServices() {
     return {

@@ -11,6 +11,10 @@ export const useCreateItemStore = defineStore('createItemStore', {
     ontologyPropertyId: 'P31' as string, // TODO: set from config!
     ontologyItemId: null as string | null,
     instanceOfOptions: [] as SearchResult[],
+    wikiConfig: {
+      instanceOfProperty: 'P31',
+      subclassOfProperty: 'P265',
+    },
   }),
   getters: {
     instanceOfMenuOptions(state): MenuOption[] {
