@@ -13,6 +13,12 @@ function storeServices() {
   return {
     writingEntityRepo: markRaw(services.get('writingEntityRepository')),
     searchEntitiesRepo: markRaw(services.get('searchEntitiesRepository')),
+    closeWithNewItem: (newItemId: string) => {
+      console.log('closing with new itemId: ', newItemId);
+    },
+    cancelAndClose: () => {
+      console.log('cancelling and closing');
+    },
   };
 }
 

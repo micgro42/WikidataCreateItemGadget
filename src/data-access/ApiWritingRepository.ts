@@ -32,6 +32,7 @@ export default class ApiWritingRepository implements WritingEntityRepository {
   ): Promise<EntityRevision> {
     const params = {
       action: 'wbeditentity',
+      new: 'item',
       data: JSON.stringify({
         ...terms,
         claims: statements,

@@ -6,5 +6,7 @@ declare module 'pinia' {
   export interface PiniaCustomProperties {
     writingEntityRepo: WritingEntityRepository;
     searchEntitiesRepo: SearchEntitiesRepository;
+    closeWithNewItem: (itemId: string) => void;
+    cancelAndClose: () => void;
   }
 }

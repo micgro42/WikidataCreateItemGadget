@@ -2,7 +2,6 @@ import { defineStore } from 'pinia';
 import FetchSearchEntityRepository from '../data-access/FetchSearchEntitiesRepository';
 import SearchResult from '../data-access/SearchResult';
 import { MenuOption } from '@wikimedia/codex/packages/vue-components';
-import Entity from '../datamodel/Entity';
 
 export const useCreateItemStore = defineStore('createItemStore', {
   state: () => ({
@@ -39,22 +38,25 @@ export const useCreateItemStore = defineStore('createItemStore', {
       );
       console.log(this.instanceOfOptions[0]);
     },
-    submitForm() {
+    cancel() {
+      this.cancelAndClose();
+    },
+    async submitForm() {
       // TODO: add validation!
-      console.log(
-        this.labelValue,
-        this.descriptionValue,
-        this.aliases,
-        this.ontologyPropertyId,
-        this.ontologyItemId,
-      );
-      this.writingEntityRepo.saveNewEntity(
+      console.log('form submitted!');
+      console.log('label', this.labelValue);
+      console.log('description', this.descriptionValue);
+      console.log('aliases', this.aliases);
+      console.log('ontologyPropertyId', this.ontologyPropertyId);
+      console.log('ontologyItemId', this.ontologyItemId);
+
+      const entityRevision = await this.writingEntityRepo.saveNewEntity(
         {
           labels: { en: { language: 'en', value: this.labelValue } },
           descriptions: {
             en: { language: 'en', value: this.descriptionValue },
           },
-          aliases: this.aliases
+          aliases: this.aliases.length
             ? {
                 en: this.aliases.map((alias) => ({
                   language: 'en',
@@ -65,6 +67,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
         },
         {},
       );
+      this.closeWithNewItem(entityRevision.entity.id);
     },
   },
 });

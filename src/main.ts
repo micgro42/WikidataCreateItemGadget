@@ -5,7 +5,11 @@ import createServices from './createServices';
 import MwWindow from './@types/MwWindow';
 
 // @ts-ignore
-window.zvpunryCreateItemApp = (mountSelector = '#app') => {
+window.zvpunryCreateItemApp = (
+  mountSelector = '#app',
+  closeWithNewItem: (itemId: string) => void,
+  cancelAndClose: () => void,
+) => {
   /**
    * config: indexOfPid subclassOfPid
    */
@@ -20,6 +24,8 @@ window.zvpunryCreateItemApp = (mountSelector = '#app') => {
     return {
       writingEntityRepo: markRaw(services.get('writingEntityRepository')),
       searchEntitiesRepo: markRaw(services.get('searchEntitiesRepository')),
+      closeWithNewItem,
+      cancelAndClose,
     };
   }
 
