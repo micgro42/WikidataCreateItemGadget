@@ -69,7 +69,28 @@ export const useCreateItemStore = defineStore('createItemStore', {
               }
             : {},
         },
-        {},
+        // @ts-ignore
+        {
+          [this.ontologyPropertyId]: [
+            {
+              mainsnak: {
+                snaktype: 'value',
+                property: this.ontologyPropertyId,
+                datatype: 'wikibase-item',
+                datavalue: {
+                  value: {
+                    'entity-type': 'item',
+                    'numeric-id': parseInt(this.ontologyItemId!.slice(1)), // FIXME: proper validation!
+                    id: this.ontologyItemId,
+                  },
+                  type: 'wikibase-entityid',
+                },
+              },
+              rank: 'normal',
+              type: 'statement',
+            },
+          ],
+        },
       );
       this.closeWithNewItem(entityRevision.entity.id);
     },

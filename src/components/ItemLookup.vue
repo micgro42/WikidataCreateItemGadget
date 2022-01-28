@@ -9,7 +9,6 @@
       placeholder="human (Q5)"
       class="lookup-custom-option"
       required="true"
-      disabled
     >
       <template #menu-option="{ option }">
         <p class="option__label">
