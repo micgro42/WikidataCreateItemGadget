@@ -1,8 +1,8 @@
-import { StatementMap } from '@wmde/wikibase-datamodel-types';
+import { StatementMap, Fingerprintable } from '@wmde/wikibase-datamodel-types';
 import WritingEntityRepository from './WritingEntityRepository';
 import EntityRevision from '../datamodel/EntityRevision';
 import Entity from '../datamodel/Entity';
-import { WritingApi } from './Api';
+import { ApiParams, WritingApi } from './Api';
 import ApiErrors from './errors/ApiErrors';
 import SavingError from './errors/SavingError';
 
@@ -26,6 +26,22 @@ export default class ApiWritingRepository implements WritingEntityRepository {
     this.tags = tags || undefined;
   }
 
+  public saveNewEntity(
+    terms: Fingerprintable,
+    statements: StatementMap,
+  ): Promise<EntityRevision> {
+    const params = {
+      action: 'wbeditentity',
+      data: JSON.stringify({
+        ...terms,
+        claims: statements,
+      }),
+      tags: this.tags,
+    };
+
+    return this.storeEntity(params, true);
+  }
+
   public saveEntity(
     entity: Entity,
     base?: EntityRevision,
@@ -40,6 +56,14 @@ export default class ApiWritingRepository implements WritingEntityRepository {
       }),
       tags: this.tags,
     };
+
+    return this.storeEntity(params, assertUser);
+  }
+
+  private storeEntity(
+    params: ApiParams<string>,
+    assertUser = true,
+  ): Promise<EntityRevision> {
     let promise;
 
     if (assertUser) {

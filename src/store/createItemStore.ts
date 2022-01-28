@@ -48,8 +48,22 @@ export const useCreateItemStore = defineStore('createItemStore', {
         this.ontologyPropertyId,
         this.ontologyItemId,
       );
-      this.writingEntityRepo.saveEntity(
-        new Entity('Q1', {}), // fixme change!
+      this.writingEntityRepo.saveNewEntity(
+        {
+          labels: { en: { language: 'en', value: this.labelValue } },
+          descriptions: {
+            en: { language: 'en', value: this.descriptionValue },
+          },
+          aliases: this.aliases
+            ? {
+                en: this.aliases.map((alias) => ({
+                  language: 'en',
+                  value: alias,
+                })),
+              }
+            : {},
+        },
+        {},
       );
     },
   },
