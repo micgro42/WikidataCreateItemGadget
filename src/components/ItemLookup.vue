@@ -4,19 +4,14 @@
     <CdxLookup
       :model-value="modelValue"
       @update:model-value="$emit('update:modelValue', $event)"
-      @new-input="$emit('newInput', $event)"
+      @new-input="onInput"
       :options="options"
       placeholder="human (Q5)"
       class="lookup-custom-option"
       required="true"
     >
       <template #menu-option="{ option }">
-        <p class="option__label">
-          {{ option.label || option.value }}
-        </p>
-        <p v-if="option.description" class="option__description">
-          {{ option.description }}
-        </p>
+        <ItemOption :option="option" />
       </template>
     </CdxLookup>
   </label>
@@ -24,11 +19,30 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { CdxLookup } from '@wikimedia/codex/packages/vue-components';
+// @ts-ignore
+import debounce from 'lodash.debounce';
+import ItemOption from './ItemOption.vue';
 
 export default defineComponent({
-  components: { CdxLookup },
+  components: { CdxLookup, ItemOption },
   props: ['modelValue', 'options'],
   emits: ['update:modelValue', 'newInput'],
+  data() {
+    return {
+      debouncedInput: null as Function | null,
+    };
+  },
+  methods: {
+    onInput(input: string): void {
+      if (this.debouncedInput === null) {
+        this.debouncedInput = debounce((input: string) => {
+          this.$emit('newInput', input);
+        }, 300);
+      }
+      // @ts-ignore
+      this.debouncedInput(input);
+    },
+  },
 });
 </script>
 
