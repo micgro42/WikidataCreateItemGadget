@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
+    "buildCodex": "cd node_modules/@wikimedia/codex && npm install && cd packages/design-tokens && npm install && cd ../icons && npm run build || cd ../vue-components && npm run build",
     "buildOnly": "vite build",
     "format": "prettier . --write",
     "preview": "vite preview"
