@@ -1,9 +1,12 @@
-import { createApp, markRaw } from 'vue';
+import { createApp, markRaw, configureCompat } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import createServices from './createServices';
 import MwWindow from './@types/MwWindow';
 
+configureCompat({
+  MODE: 3,
+});
 // @ts-ignore
 window.zvpunryCreateItemApp = (
   mountSelector = '#app',
