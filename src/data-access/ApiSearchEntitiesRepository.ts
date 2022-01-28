@@ -1,7 +1,6 @@
 import { ApiParams, ReadingApi } from './Api';
-import TechnicalProblem from './errors/TechnicalProblem';
 import SearchEntitiesRepository from './SearchEntityRepository';
-import SearchResult from './SearchResult';
+import { ItemSearchResult, PropertySearchResult } from './SearchResult';
 
 export default class ApiSearchEntitiesRepository
   implements SearchEntitiesRepository
@@ -16,7 +15,7 @@ export default class ApiSearchEntitiesRepository
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]> {
+  ): Promise<PropertySearchResult[]> {
     throw new Error('Method not implemented.');
   }
 
@@ -24,7 +23,7 @@ export default class ApiSearchEntitiesRepository
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]> {
+  ): Promise<ItemSearchResult[]> {
     const params: ApiParams<'wbsearchentities'> = {
       action: 'wbsearchentities',
       search: searchString,

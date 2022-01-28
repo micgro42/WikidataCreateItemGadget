@@ -1,4 +1,4 @@
-import SearchResult from './SearchResult';
+import { ItemSearchResult, PropertySearchResult } from './SearchResult';
 
 /**
  * Repository to search for entities.
@@ -9,10 +9,10 @@ export default interface SearchEntitiesRepository {
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]>;
+  ): Promise<PropertySearchResult[]>;
   searchItems(
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]>;
+  ): Promise<ItemSearchResult[]>;
 }

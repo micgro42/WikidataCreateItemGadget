@@ -1,5 +1,5 @@
 import SearchEntitiesRepository from './SearchEntityRepository';
-import SearchResult from './SearchResult';
+import { ItemSearchResult, PropertySearchResult } from './SearchResult';
 import TechnicalProblem from './errors/TechnicalProblem';
 
 export default class FetchSearchEntityRepository
@@ -18,7 +18,7 @@ export default class FetchSearchEntityRepository
     entityType: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]> {
+  ): Promise<PropertySearchResult[] | ItemSearchResult[]> {
     if (!searchString) {
       throw new Error('The parameter searchString must not be empty!');
     }
@@ -64,15 +64,20 @@ export default class FetchSearchEntityRepository
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]> {
-    return this.searchEntities(searchString, 'property', limit, offset);
+  ): Promise<PropertySearchResult[]> {
+    return this.searchEntities(
+      searchString,
+      'property',
+      limit,
+      offset,
+    ) as Promise<PropertySearchResult[]>;
   }
 
   public searchItems(
     searchString: string,
     limit?: number,
     offset?: number,
-  ): Promise<SearchResult[]> {
+  ): Promise<ItemSearchResult[]> {
     return this.searchEntities(searchString, 'item', limit, offset);
   }
 }

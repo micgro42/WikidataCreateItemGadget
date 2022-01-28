@@ -1,7 +1,15 @@
 import { defineStore } from 'pinia';
 import FetchSearchEntityRepository from '../data-access/FetchSearchEntitiesRepository';
-import SearchResult from '../data-access/SearchResult';
+import { ItemSearchResult } from '../data-access/SearchResult';
 import { MenuOption } from '@wikimedia/codex/packages/vue-components';
+
+interface ItemMenuOption extends MenuOption {
+  match: {
+    type: string;
+    language?: string;
+    text: string;
+  };
+}
 
 export const useCreateItemStore = defineStore('createItemStore', {
   state: () => ({
@@ -10,21 +18,24 @@ export const useCreateItemStore = defineStore('createItemStore', {
     aliases: [] as string[],
     ontologyPropertyId: 'P31' as string, // TODO: set from config!
     ontologyItemId: null as string | null,
-    instanceOfOptions: [] as SearchResult[],
+    instanceOfOptions: [] as ItemSearchResult[],
     wikiConfig: {
       instanceOfProperty: 'P31',
       subclassOfProperty: 'P265',
     },
   }),
   getters: {
-    instanceOfMenuOptions(state): MenuOption[] {
-      return state.instanceOfOptions.map((option: SearchResult): MenuOption => {
-        return {
-          value: option.id,
-          label: option.label,
-          description: option.description,
-        };
-      });
+    instanceOfMenuOptions(state): ItemMenuOption[] {
+      return state.instanceOfOptions.map(
+        (option: ItemSearchResult): ItemMenuOption => {
+          return {
+            value: option.id,
+            label: option.label,
+            description: option.description,
+            match: option.match,
+          };
+        },
+      );
     },
   },
   actions: {
