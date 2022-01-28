@@ -3,12 +3,13 @@
     Ontology item:
     <CdxLookup
       :model-value="modelValue"
-      @update:model-value="(event) => $emit('update:modelValue', event)"
-      @new-input="(event) => $emit('newInput', event)"
+      @update:model-value="$emit('update:modelValue', $event)"
+      @new-input="$emit('newInput', $event)"
       :options="options"
       placeholder="human (Q5)"
       class="lookup-custom-option"
       required="true"
+      disabled
     >
       <template #menu-option="{ option }">
         <p class="option__label">
