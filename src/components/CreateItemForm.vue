@@ -23,7 +23,6 @@ const propertyOptions = [
     value: store.wikiConfig.subclassOfProperty,
   },
 ];
-// ontology options, ontology value, onOntologyInput
 </script>
 <template>
   <form @submit.prevent="store.submitForm" class="create-item-form">
@@ -36,6 +35,7 @@ const propertyOptions = [
     <div>
       <AliasesInput v-model="store.aliases" />
     </div>
+    <h4 class="create-item-form__ontology-heading">Ontology</h4>
     <div>
       <PropertySwitch
         v-model="store.ontologyPropertyId"
@@ -62,5 +62,9 @@ const propertyOptions = [
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+
+  &__ontology-heading {
+    margin: 0.5rem 0 0 0;
+  }
 }
 </style>
