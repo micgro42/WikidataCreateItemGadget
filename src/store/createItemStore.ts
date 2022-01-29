@@ -16,7 +16,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
     labelValue: '',
     descriptionValue: '',
     aliases: [] as string[],
-    ontologyPropertyId: 'P31' as string, // TODO: set from config!
+    ontologyPropertyId: '' as string,
     ontologyItemId: null as string | null,
     instanceOfOptions: [] as ItemSearchResult[],
     wikiConfig: {

@@ -17,6 +17,7 @@ const props = defineProps<{
     :inline="true"
     @update:model-value="$emit('update:modelValue', $event)"
     :model-value="modelValue"
+    required
   >
     {{ property.label }}
   </cdx-radio>
