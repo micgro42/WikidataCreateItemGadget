@@ -26,22 +26,41 @@ const propertyOptions = [
 // ontology options, ontology value, onOntologyInput
 </script>
 <template>
-  <form @submit.prevent="store.submitForm">
-    <LabelInput v-model="store.labelValue" />
-    <DescriptionInput v-model="store.descriptionValue" />
-    <AliasesInput v-model="store.aliases" />
-    <PropertySwitch
-      v-model="store.ontologyPropertyId"
-      :property-options="propertyOptions"
-    /><br />
-    <ItemLookup
-      v-model="store.ontologyItemId"
-      @new-input="instanceOfInput"
-      :options="store.instanceOfMenuOptions"
-    />
-    <CdxButton action="progressive" type="primary">Create</CdxButton>
-    <CdxButton action="default" type="quiet" @click.prevent="store.cancel"
-      >Cancel</CdxButton
-    >
+  <form @submit.prevent="store.submitForm" class="create-item-form">
+    <div>
+      <LabelInput v-model="store.labelValue" />
+    </div>
+    <div>
+      <DescriptionInput v-model="store.descriptionValue" />
+    </div>
+    <div>
+      <AliasesInput v-model="store.aliases" />
+    </div>
+    <div>
+      <PropertySwitch
+        v-model="store.ontologyPropertyId"
+        :property-options="propertyOptions"
+      />
+    </div>
+    <div>
+      <ItemLookup
+        v-model="store.ontologyItemId"
+        @new-input="instanceOfInput"
+        :options="store.instanceOfMenuOptions"
+      />
+    </div>
+    <div>
+      <CdxButton action="progressive" type="primary">Create</CdxButton>
+      <CdxButton action="default" type="quiet" @click.prevent="store.cancel">
+        Cancel
+      </CdxButton>
+    </div>
   </form>
 </template>
+<style lang="scss">
+.create-item-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+</style>
