@@ -39,9 +39,10 @@ export const useCreateItemStore = defineStore('createItemStore', {
     },
   },
   actions: {
-    async searchInstanceOfOptions(searchText: string) {
+    async searchInstanceOfOptions(searchText: string): Promise<void> {
       if (!searchText) {
-        return [];
+        this.instanceOfOptions = [];
+        return;
       }
 
       this.instanceOfOptions = await this.searchEntitiesRepo.searchItems(
