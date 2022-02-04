@@ -4,7 +4,7 @@ import CreateItemModal from './components/CreateItemModal.vue';
 </script>
 
 <template>
-  <div>
+  <div lang="en" dir="ltr">
     <CreateItemModal>
       <template #header><h3>Create new Item</h3></template>
       <template #body>
@@ -14,5 +14,3 @@ import CreateItemModal from './components/CreateItemModal.vue';
     </CreateItemModal>
   </div>
 </template>
-
-<style></style>
