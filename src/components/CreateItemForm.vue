@@ -71,7 +71,7 @@ const propertyOptions = [
   gap: 0.75rem;
 
   &__ontology-heading {
-    margin: 0.5rem 0 0 0;
+    margin: 0.5rem 0 0;
   }
 }
 </style>

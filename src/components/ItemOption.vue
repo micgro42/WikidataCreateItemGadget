@@ -43,16 +43,20 @@ watchEffect(() => {
   p {
     margin: 0;
   }
+
   &__title {
     display: flex;
     justify-content: space-between;
   }
+
   &__extra-match {
     font-style: italic;
   }
+
   &__label {
     font-weight: bold;
   }
+
   &__description {
     font-size: 0.875em;
     line-height: 1.25;

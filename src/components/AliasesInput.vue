@@ -6,6 +6,7 @@
       @update:model-value="onInput"
   /></label>
 </template>
+
 <script setup lang="ts">
 import { CdxTextInput } from '@wikimedia/codex/packages/vue-components';
 const props = defineProps<{
