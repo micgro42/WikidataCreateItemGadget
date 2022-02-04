@@ -125,7 +125,7 @@ export interface OOElement {
 }
 
 /** @see: https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.Window */
-export interface OOUIWindow extends OOElement {}
+export type OOUIWindow = OOElement;
 
 /** @see: https://doc.wikimedia.org/mediawiki-core/master/js/#!/api/OO.ui.WindowInstance */
 export interface WindowInstance {

@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import FetchSearchEntityRepository from '../data-access/FetchSearchEntitiesRepository';
 import { ItemSearchResult } from '../data-access/SearchResult';
 import { MenuOption } from '@wikimedia/codex/packages/vue-components';
 
@@ -71,6 +70,11 @@ export const useCreateItemStore = defineStore('createItemStore', {
       console.log('ontologyPropertyId', this.ontologyPropertyId);
       console.log('ontologyItemId', this.ontologyItemId);
 
+      if (!this.ontologyItemId) {
+        // FIXME: proper validation!
+        throw new Error('ontologyItemId is not set!');
+      }
+
       const entityRevision = await this.writingEntityRepo.saveNewEntity(
         {
           labels: { en: { language: 'en', value: this.labelValue } },
@@ -86,7 +90,8 @@ export const useCreateItemStore = defineStore('createItemStore', {
               }
             : {},
         },
-        // @ts-ignore
+        /* eslint-disable @typescript-eslint/ban-ts-comment */
+        // @ts-ignore -- need to extend Snak and DataType type definitions with `wikibase-item`. Tracked in #6
         {
           [this.ontologyPropertyId]: [
             {
@@ -97,7 +102,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
                 datavalue: {
                   value: {
                     'entity-type': 'item',
-                    'numeric-id': parseInt(this.ontologyItemId!.slice(1)), // FIXME: proper validation!
+                    'numeric-id': parseInt(this.ontologyItemId.slice(1)),
                     id: this.ontologyItemId,
                   },
                   type: 'wikibase-entityid',

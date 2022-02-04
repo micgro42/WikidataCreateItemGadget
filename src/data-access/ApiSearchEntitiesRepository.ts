@@ -12,9 +12,9 @@ export default class ApiSearchEntitiesRepository
   }
 
   searchProperties(
-    searchString: string,
-    limit?: number,
-    offset?: number,
+    _searchString: string,
+    _limit?: number,
+    _offset?: number,
   ): Promise<PropertySearchResult[]> {
     throw new Error('Method not implemented.');
   }
@@ -38,8 +38,7 @@ export default class ApiSearchEntitiesRepository
       params.continue = `${offset}`;
     }
     const response = await this.api.get(params); // TODO: try/catch
-    // FIXME
-    // @ts-ignore
+
     return response.search;
   }
 }

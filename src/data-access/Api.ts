@@ -1,4 +1,5 @@
 import { ApiQueryResponse } from './ApiQuery';
+import { ApiWbSearchEntitiesResponse } from './ApiSearchEntities';
 import { ApiWbgetentitiesResponse } from './ApiWbgetentities';
 
 export type ApiResponse = {
@@ -8,6 +9,7 @@ export type ApiResponse = {
 export interface ApiResponsesMap {
   query: ApiQueryResponse;
   wbgetentities: ApiWbgetentitiesResponse;
+  wbsearchentities: ApiWbSearchEntitiesResponse;
   [action: string]: ApiResponse;
 }
 export type ApiAction = keyof ApiResponsesMap & string;

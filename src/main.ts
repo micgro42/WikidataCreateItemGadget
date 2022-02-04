@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore configureCompat is only available in the vue on-wiki
 import { createApp, markRaw, configureCompat } from 'vue';
 import App from './App.vue';
@@ -14,7 +15,8 @@ type wikiConfig = {
 configureCompat({
   MODE: 3,
 });
-// @ts-ignore
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore Yes it doesn't exist - this intentionally adds a new property to the window object
 window.zvpunryCreateItemApp = (
   mountSelector = '#app',
   closeWithNewItem: (itemId: string) => void,

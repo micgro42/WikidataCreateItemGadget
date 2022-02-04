@@ -3,9 +3,7 @@ import TechnicalProblem from './errors/TechnicalProblem';
 import Api, { ApiAction, ApiError, ApiParams, ApiResponsesMap } from './Api';
 import JQueryTechnicalError from './errors/JQueryTechnicalError';
 import jqXHR = JQuery.jqXHR;
-
-type MwApi = any;
-type MwApiParameters = any;
+import { MwApi, MwApiParameters } from '../@types/MwWindow';
 
 /**
  * Basic implementation of Api using MwApi.
