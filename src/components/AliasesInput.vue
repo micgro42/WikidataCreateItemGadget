@@ -1,9 +1,9 @@
 <template>
   <label
     >Aliases, pipe-separated:<CdxTextInput
-      :modelValue="aliasString"
-      @update:model-value="onInput"
+      :model-value="aliasString"
       placeholder="Alan M. Turing | Turing"
+      @update:model-value="onInput"
   /></label>
 </template>
 <script setup lang="ts">

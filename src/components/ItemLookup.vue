@@ -3,12 +3,12 @@
     Ontology item:
     <CdxLookup
       :model-value="modelValue"
-      @update:model-value="onSelect"
-      @new-input="onInput"
       :options="extendedOptions"
       placeholder="human (Q5)"
       class="lookup-custom-option"
       required="true"
+      @update:model-value="onSelect"
+      @new-input="onInput"
     >
       <template #menu-option="{ option }">
         <div
@@ -22,59 +22,61 @@
     </CdxLookup>
   </label>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
-import { CdxLookup } from '@wikimedia/codex/packages/vue-components';
-// @ts-ignore
+
+<script setup lang="ts">
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore -- the lodash types are installed, it is unclear why it doesn't find them
 import debounce from 'lodash.debounce';
+import { ref, computed } from 'vue';
+import {
+  CdxLookup,
+  MenuOption,
+} from '@wikimedia/codex/packages/vue-components';
 import ItemOption from './ItemOption.vue';
 
-export default defineComponent({
-  components: { CdxLookup, ItemOption },
-  props: ['modelValue', 'options'],
-  emits: ['update:modelValue', 'newInput', 'moreOptions'],
-  data() {
-    return {
-      debouncedInput: null as Function | null,
-    };
-  },
-  computed: {
-    extendedOptions() {
-      if (this.options.length === 0) {
-        return this.options;
-      }
-      const options = this.options;
-      return [
-        ...options,
-        {
-          label: 'more...',
-          value: 'MORE',
-        },
-      ];
+const emit = defineEmits(['update:modelValue', 'newInput', 'moreOptions']);
+const props = defineProps<{
+  modelValue: string | null;
+  options: MenuOption[];
+}>();
+
+const extendedOptions = computed((): MenuOption[] => {
+  if (props.options.length === 0) {
+    return props.options;
+  }
+  const options = props.options;
+  return [
+    ...options,
+    {
+      label: 'more...',
+      value: 'MORE',
     },
-  },
-  methods: {
-    onSelect(newValue: string): void {
-      if (newValue === 'MORE') {
-        this.moreOptions();
-      } else {
-        this.$emit('update:modelValue', newValue);
-      }
-    },
-    moreOptions() {
-      this.$emit('moreOptions');
-    },
-    onInput(input: string): void {
-      if (this.debouncedInput === null) {
-        this.debouncedInput = debounce((input: string) => {
-          this.$emit('newInput', input);
-        }, 300);
-      }
-      // @ts-ignore
-      this.debouncedInput(input);
-    },
-  },
+  ];
 });
+
+let debouncedInput = ref(null);
+
+const moreOptions = (): void => {
+  emit('moreOptions');
+};
+
+const onSelect = (newValue: string): void => {
+  if (newValue === 'MORE') {
+    moreOptions();
+  } else {
+    emit('update:modelValue', newValue);
+  }
+};
+
+const onInput = (input: string): void => {
+  if (debouncedInput.value === null) {
+    debouncedInput = debounce((input: string) => {
+      emit('newInput', input);
+    }, 300);
+  }
+  // @ts-ignore -- somehow it doesn't understand that the property is set in the guard above
+  debouncedInput(input);
+};
 </script>
 
 <style lang="scss" scoped>

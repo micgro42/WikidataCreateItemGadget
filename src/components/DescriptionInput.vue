@@ -1,20 +1,19 @@
 <template>
   <label
     >Description:<CdxTextInput
-      :modelValue="modelValue"
-      @update:model-value="$emit('update:modelValue', $event)"
+      :model-value="modelValue"
       placeholder="British computer scientist"
       required="true"
+      @update:model-value="$emit('update:modelValue', $event)"
   /></label>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { CdxTextInput } from '@wikimedia/codex/packages/vue-components';
 
-export default defineComponent({
-  components: { CdxTextInput },
-  props: ['modelValue'],
-  emits: ['update:modelValue'],
-});
+defineProps<{
+  modelValue: string;
+}>();
+
+defineEmits(['update:modelValue']);
 </script>

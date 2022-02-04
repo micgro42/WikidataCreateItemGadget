@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { CdxRadio } from '@wikimedia/codex/packages/vue-components';
 
-const emit = defineEmits(['update:modelValue']);
-const props = defineProps<{
+defineEmits(['update:modelValue']);
+defineProps<{
   modelValue: string;
   propertyOptions: { label: string; value: string }[];
 }>();
@@ -15,9 +15,9 @@ const props = defineProps<{
     name="ontology-switch"
     :input-value="property.value"
     :inline="true"
-    @update:model-value="$emit('update:modelValue', $event)"
     :model-value="modelValue"
     required
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     {{ property.label }}
   </cdx-radio>

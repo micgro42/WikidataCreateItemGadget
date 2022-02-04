@@ -31,7 +31,7 @@ const propertyOptions = [
 ];
 </script>
 <template>
-  <form @submit.prevent="store.submitForm" class="create-item-form">
+  <form class="create-item-form" @submit.prevent="store.submitForm">
     <div>
       <LabelInput v-model="store.labelValue" />
     </div>
@@ -51,9 +51,9 @@ const propertyOptions = [
     <div>
       <ItemLookup
         v-model="store.ontologyItemId"
-        @new-input="searchNewOptions"
-        @moreOptions="searchMoreOptions"
         :options="store.instanceOfMenuOptions"
+        @new-input="searchNewOptions"
+        @more-options="searchMoreOptions"
       />
     </div>
     <div>
