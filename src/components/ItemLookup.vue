@@ -3,15 +3,21 @@
     Ontology item:
     <CdxLookup
       :model-value="modelValue"
-      @update:model-value="$emit('update:modelValue', $event)"
+      @update:model-value="onSelect"
       @new-input="onInput"
-      :options="options"
+      :options="extendedOptions"
       placeholder="human (Q5)"
       class="lookup-custom-option"
       required="true"
     >
       <template #menu-option="{ option }">
-        <ItemOption :option="option" />
+        <div
+          v-if="option.value === 'MORE'"
+          @click.capture.stop.prevent.self="moreOptions"
+        >
+          {{ option.label }}
+        </div>
+        <ItemOption v-else :option="option" />
       </template>
     </CdxLookup>
   </label>
@@ -26,13 +32,38 @@ import ItemOption from './ItemOption.vue';
 export default defineComponent({
   components: { CdxLookup, ItemOption },
   props: ['modelValue', 'options'],
-  emits: ['update:modelValue', 'newInput'],
+  emits: ['update:modelValue', 'newInput', 'moreOptions'],
   data() {
     return {
       debouncedInput: null as Function | null,
     };
   },
+  computed: {
+    extendedOptions() {
+      if (this.options.length === 0) {
+        return this.options;
+      }
+      const options = this.options;
+      return [
+        ...options,
+        {
+          label: 'more...',
+          value: 'MORE',
+        },
+      ];
+    },
+  },
   methods: {
+    onSelect(newValue: string): void {
+      if (newValue === 'MORE') {
+        this.moreOptions();
+      } else {
+        this.$emit('update:modelValue', newValue);
+      }
+    },
+    moreOptions() {
+      this.$emit('moreOptions');
+    },
     onInput(input: string): void {
       if (this.debouncedInput === null) {
         this.debouncedInput = debounce((input: string) => {

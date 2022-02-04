@@ -18,6 +18,7 @@ export const useCreateItemStore = defineStore('createItemStore', {
     aliases: [] as string[],
     ontologyPropertyId: '' as string,
     ontologyItemId: null as string | null,
+    ontologySearch: '' as string,
     instanceOfOptions: [] as ItemSearchResult[],
     wikiConfig: {
       instanceOfProperty: 'P31',
@@ -49,6 +50,14 @@ export const useCreateItemStore = defineStore('createItemStore', {
         searchText,
       );
       console.log(this.instanceOfOptions[0]);
+    },
+    async searchMoreOptions() {
+      const nextBatchOfOptions = await this.searchEntitiesRepo.searchItems(
+        this.ontologySearch,
+        undefined,
+        this.instanceOfOptions.length,
+      );
+      this.instanceOfOptions.push(...nextBatchOfOptions);
     },
     cancel() {
       this.cancelAndClose();

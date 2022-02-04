@@ -9,10 +9,16 @@ import { CdxButton } from '@wikimedia/codex/packages/vue-components';
 
 const store = useCreateItemStore();
 
-const instanceOfInput = (input: string) => {
+const searchNewOptions = (input: string) => {
   console.log('instanceOf input', input);
+  store.ontologySearch = input;
   store.searchInstanceOfOptions(input);
 };
+
+const searchMoreOptions = (): void => {
+  store.searchMoreOptions();
+};
+
 const propertyOptions = [
   {
     label: 'instance of',
@@ -45,7 +51,8 @@ const propertyOptions = [
     <div>
       <ItemLookup
         v-model="store.ontologyItemId"
-        @new-input="instanceOfInput"
+        @new-input="searchNewOptions"
+        @moreOptions="searchMoreOptions"
         :options="store.instanceOfMenuOptions"
       />
     </div>
