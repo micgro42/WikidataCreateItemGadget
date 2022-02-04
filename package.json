@@ -9,7 +9,8 @@
     "format": "prettier . --write",
     "preview": "vite preview",
     "prepare": "husky install",
-    "test:lint-scripts": "eslint --ext .js,.ts,vue --ignore-path .gitignore ."
+    "test:lint-scripts": "eslint --ext .js,.ts,vue --ignore-path .gitignore .",
+    "test:lint-styles": "stylelint src/**/*.{css,scss,vue}"
   },
   "peer-dependencies": {
     "vue": "3.2.27"
@@ -30,12 +31,15 @@
     "eslint-plugin-vue": "^8.4.1",
     "husky": "^7.0.4",
     "jquery": "^3.6.0",
-    "less": "^4.1.2",
     "lint-staged": "^12.3.3",
     "lodash.debounce": "^4.0.8",
     "pinia": "^2.0.6",
     "prettier": "^2.5.1",
     "sass": "^1.45.0",
+    "stylelint": "^14.3.0",
+    "stylelint-config-prettier-scss": "^0.0.1",
+    "stylelint-config-recommended-vue": "^1.1.0",
+    "stylelint-config-standard-scss": "^3.0.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
     "vue-tsc": "^0.31.1",
@@ -45,6 +49,7 @@
     "*.{js,ts,vue}": [
       "eslint --fix"
     ],
+    "*.{css,scss,vue}": "stylelint --fix",
     "*": [
       "prettier --ignore-unknown --write"
     ]
