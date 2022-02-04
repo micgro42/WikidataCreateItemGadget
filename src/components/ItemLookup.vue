@@ -5,7 +5,7 @@
       :model-value="modelValue"
       :options="extendedOptions"
       placeholder="human (Q5)"
-      class="lookup-custom-option"
+      class="cria-lookup"
       required="true"
       @update:model-value="onSelect"
       @new-input="onInput"
@@ -79,21 +79,11 @@ const onInput = (input: string): void => {
 };
 </script>
 
-<style lang="scss" scoped>
-.lookup-custom-option {
-  p {
-    margin: 0;
-  }
-
-  .option {
-    &__label {
-      font-weight: bold;
-    }
-
-    &__description {
-      font-size: 0.875em;
-      line-height: 1.25;
-    }
+<style lang="scss">
+.cria-lookup .cdx-lookup {
+  &__menu {
+    max-height: 15rem;
+    overflow-y: scroll;
   }
 }
 </style>
