@@ -7,20 +7,31 @@
     "buildCodex": "cd node_modules/@wikimedia/codex && npm install && cd packages/design-tokens && npm install && cd ../icons && npm run build || cd ../vue-components && npm run build",
     "buildOnly": "vite build",
     "format": "prettier . --write",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "test:lint-scripts": "eslint --ext .js,.ts,vue --ignore-path .gitignore ."
   },
   "peer-dependencies": {
-    "vue": "3.2.23"
+    "vue": "3.2.27"
   },
   "devDependencies": {
     "@types/jquery": "^3.5.11",
     "@types/lodash": "^4.14.178",
     "@types/node": "^16.11.21",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
     "@vitejs/plugin-vue": "^2.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
     "@wikimedia/codex": "github:wikimedia/design-codex#main",
     "@wmde/wikibase-datamodel-types": "^0.2.0",
+    "eslint": "^8.8.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.4.1",
+    "husky": "^7.0.4",
     "jquery": "^3.6.0",
     "less": "^4.1.2",
+    "lint-staged": "^12.3.3",
     "lodash.debounce": "^4.0.8",
     "pinia": "^2.0.6",
     "prettier": "^2.5.1",
@@ -29,5 +40,13 @@
     "vite": "^2.7.2",
     "vue-tsc": "^0.31.1",
     "wikimedia-ui-base": "^0.19.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint --fix"
+    ],
+    "*": [
+      "prettier --ignore-unknown --write"
+    ]
   }
 }
