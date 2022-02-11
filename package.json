@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "buildCodex": "cd node_modules/@wikimedia/codex && npm install && npm run build-all-if-missing || exit 0",
+    "postinstall": "cd node_modules/@wikimedia/codex && npm install && npm run build-all-if-missing || exit 0",
     "buildOnly": "vite build",
     "format": "prettier . --write",
     "preview": "vite preview",
