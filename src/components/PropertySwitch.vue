@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CdxRadio } from '@wikimedia/codex/packages/vue-components';
+import { CdxRadio } from '@wikimedia/codex/packages/codex';
 
 defineEmits(['update:modelValue']);
 defineProps<{

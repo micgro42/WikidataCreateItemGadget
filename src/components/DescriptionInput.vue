@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { CdxTextInput } from '@wikimedia/codex/packages/vue-components';
+import { CdxTextInput } from '@wikimedia/codex/packages/codex';
 
 defineProps<{
   modelValue: string;

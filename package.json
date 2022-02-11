@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "buildCodex": "cd node_modules/@wikimedia/codex && npm install && cd packages/design-tokens && npm install && cd ../icons && npm run build || cd ../vue-components && npm run build",
+    "buildCodex": "cd node_modules/@wikimedia/codex && npm install && npm run build-all-if-missing || exit 0",
     "buildOnly": "vite build",
     "format": "prettier . --write",
     "preview": "vite preview",
@@ -42,6 +42,7 @@
     "stylelint-config-standard-scss": "^3.0.0",
     "typescript": "^4.4.4",
     "vite": "^2.7.2",
+    "vue": "3.2.27",
     "vue-tsc": "^0.31.1",
     "wikimedia-ui-base": "^0.19.0"
   },

@@ -28,10 +28,7 @@
 // @ts-ignore -- the lodash types are installed, it is unclear why it doesn't find them
 import debounce from 'lodash.debounce';
 import { ref, computed } from 'vue';
-import {
-  CdxLookup,
-  MenuOption,
-} from '@wikimedia/codex/packages/vue-components';
+import { CdxLookup, MenuOption } from '@wikimedia/codex/packages/codex';
 import ItemOption from './ItemOption.vue';
 
 const emit = defineEmits(['update:modelValue', 'newInput', 'moreOptions']);
