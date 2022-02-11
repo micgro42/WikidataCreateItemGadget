@@ -2,7 +2,7 @@ import { createApp, markRaw } from 'vue';
 import App from './App.vue';
 import { createPinia } from 'pinia';
 import createMockServices from './createMockServices';
-import '@wikimedia/codex/packages/vue-components/dist/codex.style.css';
+import '@wikimedia/codex/packages/codex/dist/codex.style.css';
 
 const services = createMockServices();
 const app = createApp(App);

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ItemSearchResult } from '../data-access/SearchResult';
-import { MenuOption } from '@wikimedia/codex/packages/vue-components';
+import { MenuOption } from '@wikimedia/codex/packages/codex';
 
 interface ItemMenuOption extends MenuOption {
   match: {

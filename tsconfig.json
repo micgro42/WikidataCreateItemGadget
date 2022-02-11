@@ -15,7 +15,7 @@
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types",
-      "./node_modules/@wikimedia/codex/packages/vue-components/dist"
+      "./node_modules/@wikimedia/codex/packages/codex/dist"
     ],
     "types": ["vite/client", "node"]
   },
