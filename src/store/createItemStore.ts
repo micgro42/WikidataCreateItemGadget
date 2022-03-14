@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { ItemSearchResult } from '../data-access/SearchResult';
-import { MenuOption } from '@wikimedia/codex/packages/codex';
+import { MenuOption } from '@wikimedia/codex';
 
 interface ItemMenuOption extends MenuOption {
   match: {

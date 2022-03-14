@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { CdxRadio } from '@wikimedia/codex/packages/codex';
+import { CdxRadio } from '@wikimedia/codex';
 
 defineEmits(['update:modelValue']);
 defineProps<{

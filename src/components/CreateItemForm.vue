@@ -5,7 +5,7 @@ import LabelInput from './LabelInput.vue';
 import DescriptionInput from './DescriptionInput.vue';
 import AliasesInput from './AliasesInput.vue';
 import ItemLookup from './ItemLookup.vue';
-import { CdxButton } from '@wikimedia/codex/packages/codex';
+import { CdxButton } from '@wikimedia/codex';
 
 const store = useCreateItemStore();
 

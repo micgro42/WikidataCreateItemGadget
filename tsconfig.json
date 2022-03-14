@@ -15,7 +15,7 @@
     "typeRoots": [
       "./node_modules/@types",
       "./src/@types",
-      "./node_modules/@wikimedia/codex/packages/codex/dist"
+      "./node_modules/@wikimedia/codex/dist"
     ],
     "types": ["vite/client", "node"]
   },

@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { CdxTextInput } from '@wikimedia/codex/packages/codex';
+import { CdxTextInput } from '@wikimedia/codex';
 
 defineProps<{
   modelValue: string;
