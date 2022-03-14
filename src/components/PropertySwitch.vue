@@ -21,4 +21,15 @@ defineProps<{
   >
     {{ property.label }}
   </cdx-radio>
+  <p v-if="!modelValue" class="cria-ontoProp__error-msg">
+    ⬆ Please select an ontology Property ⬆
+  </p>
 </template>
+
+<style>
+.cria-ontoProp__error-msg {
+  color: #d33;
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+</style>
